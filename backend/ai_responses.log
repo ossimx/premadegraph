@@ -1,0 +1,896 @@
+Prompt:
+You will receive a list of clusters, each cluster has multiple player names separated by commas.
+Analyze the names in each cluster and return a JSON object where keys are cluster IDs (e.g. cluster1) and values are the most likely country of origin for that entire cluster.
+Clusters are from Eastern Europe or the Middle East (EUNE region).
+Only return the JSON object.
+The content is expected to be a JSON string like:
+{ "cluster1": "Poland", "cluster2": "Turkey" }
+
+cluster1: zlepionytopami#EUNE, Ousayy#EUNE, Soul#0321, mgr inż Sztygar#EUNE, adHITolfLER#php, Rebek#EUNE, KeineGucciTasche#TDML, ELG Girl gamer#EUNE
+cluster2: Tzschep#EUNE, vesjak#EUNE, Dani911#911, Luv Me Some Bara#SLURP, BTWDusse#EUNE, Mmlprox#WoW, ChanelKatty#LOVE, Sztike#uwu
+cluster3: THE LAST NINJA#777, Fawda#EUNE, Lairdyer#EUNE, EyeOfEagle#2510, CursedΔόξης#1312, IX9IX9IX9IX9IX9#IX9, Unpleasant lane#9902, Samira Futa Milk#6699, Speachless#EUNE, xanax#tilt, sams7#EUNE, Domagοj#EUNE, HAV0C VII#EUNE
+Response:
+```json
+{
+  "cluster1": "Poland",
+  "cluster2": "Poland",
+  "cluster3": "Greece"
+}
+```
+
+Prompt:
+You will receive a list of clusters, each cluster has multiple player names separated by commas.
+Analyze the names in each cluster and return a JSON object where keys are cluster IDs (e.g. cluster1) and values are the most likely country of origin for that entire cluster.
+Clusters are from Eastern Europe or the Middle East (EUNE region).
+Only return the JSON object.
+The content is expected to be a JSON string like:
+{ "cluster1": "Poland", "cluster2": "Turkey" }
+
+cluster1: bitingDOG#0001, LebronzeJameSS#2301
+cluster2: Hipek#Noob, Just Hipcio#Noob
+cluster3: VN InN0VaTi0n#EUNE, 게팔 신#1546, t0anDz#9999, FakeIron#8446, T1 DÂN ĐÔNG LÀO#38HL, 이민형신이다#4451, 152 Cái Sừng#99999
+Response:
+```json
+{
+  "cluster1": "Serbia",
+  "cluster2": "Poland",
+  "cluster3": "Korea"
+}
+```
+
+Prompt:
+You will receive a list of clusters, each cluster has multiple player names separated by commas.
+Analyze the names in each cluster and return a JSON object where keys are cluster IDs (e.g. cluster1) and values are the most likely country of origin for that entire cluster.
+Clusters are from Eastern Europe or the Middle East (EUNE region).
+Only return the JSON object.
+The content is expected to be a JSON string like:
+{ "cluster1": "Poland", "cluster2": "Turkey" }
+
+cluster1: Björk main#Debut, Michael Scofield#HRA10, Lost in the Fire#4n931, Flori#JgGap, Ryoko#SONA, P1nkPengu1n#EUNE
+cluster2: ThunderLord22#EUNE, RealDeat#EUNE, Gyökeres#SIFTN, Hide under bush#1222, Mosogatógép#Yuumi, Ficzi#4951G, FeverDream96#EUNE, zyppery#EUNE, Bring b Hexchest#Ch3st, Rąchnąbąd#MAD, Skibbi#EUNE, mocskos görögök#SIFTN
+cluster3: RaidenMaster#EUNE, MichaelJackson#13337, DisasterAppeared#EUNE, Adri#SIFTN, supportwae69#EUNE, Garivaldii#EUNE, VAX420#EUNE, Tátya Dávid#71DNK, Ryy#EUNE, Kukac24#EUNE, Sydney Sweeney#LAZIO, AramilHUN#EUNE
+Response:
+```json
+{
+  "cluster1": "Iceland",
+  "cluster2": "Hungary",
+  "cluster3": "Hungary"
+}
+```
+
+Prompt:
+You will receive a list of clusters, each cluster has multiple player names separated by commas.
+Analyze the names in each cluster and return a JSON object where keys are cluster IDs (e.g. cluster1) and values are the most likely country of origin for that entire cluster.
+Clusters are from Eastern Europe or the Middle East (EUNE region).
+Only return the JSON object.
+The content is expected to be a JSON string like:
+{ "cluster1": "Poland", "cluster2": "Turkey" }
+
+cluster1: Jungl3pl4y3r#EUNE, Aimhigher#EUNE, Zümci#EUNE, BoldogKatica1#EUNE, Dyslexic Jihn#ADHD, OssiMX#SIFTN, Előd#BOT, Lordy#RTM, Sweet Revenge#EUNE, lécheur de pieds#666, AaronyJdK#EUNE, Valimisi#THC
+cluster2: Szymeq01#EUNE, Mømy Lover#LOSE, Adi#shdw, My Sails Are Set#SWAIN, TheBunko#EUNE, Kuro Saboruchi#EUNE, szymkii#228, PepeJulianOnzima#UGD, Riwellsaid#RIW, PKristof9000#420, VißráThoR#EUNE, aserghui#UTCN
+cluster3: ICHIGOAT22#3655, johnnyssy#EUNE, Biscuit Senpai#keksz, kis pistike hun#EUNE, Velana#EUNE, SilverLobbyAlert#JGDIF, i no one#Eva, Aelio#EUNE, UnforgivenBl4de#4444, TitirY#666
+Response:
+```json
+{
+  "cluster1": "Hungary",
+  "cluster2": "Poland",
+  "cluster3": "Hungary"
+}
+```
+
+Prompt:
+You will receive a list of clusters, each cluster has multiple player names separated by commas.
+Analyze the names in each cluster and return a JSON object where keys are cluster IDs (e.g. cluster1) and values are the most likely country of origin for that entire cluster.
+Clusters are from Eastern Europe or the Middle East (EUNE region).
+Only return the JSON object.
+The content is expected to be a JSON string like:
+{ "cluster1": "Poland", "cluster2": "Turkey" }
+
+cluster1: fecske07#EUNE, Zyraker#EUNE, chocollama48#CCAT, Iaukrnves#EUNE, anyádpasilya#112, Szecska#RATT
+cluster2: MissDisaster#522, Vega157#EUNE, MajorZocker44#EUNE
+cluster3: TeemoNyga#227, KariKow#EUNE, Norman Czekierda#227, MissC#EUNE, bling blîng boy#EUNE, docent żbik#227, kubahubala123#EUNE, hetmanekHWK#ZMC, AsmodeusGR#LGU, FLUBI333#EUNE, HiperHipcio#EUNE, LMS 19#EUNE, Pawelek#EUNE, patinosi#227, MarkSSman#sorry
+Response:
+```json
+{
+ "cluster1": "Hungary",
+ "cluster2": "Germany",
+ "cluster3": "Poland"
+}
+```
+
+Prompt:
+You will receive a list of clusters, each cluster has multiple player names separated by commas.
+Analyze the names in each cluster and return a JSON object where keys are cluster IDs (e.g. cluster1) and values are the most likely country of origin for that entire cluster.
+Clusters are from Eastern Europe or the Middle East (EUNE region).
+Only return the JSON object.
+The content is expected to be a JSON string like:
+{ "cluster1": "Poland", "cluster2": "Turkey" }
+
+cluster1: Boruffka#Boru, Gebit#EUNE, Hardusek#EUNE, ZuzaKoshy#EUNE, DaRtes#ELK, KapitanSnaks#EUNE, RekTeEmoS#EUNE, Essquie#EUNE, PuZdang#EUNE, Chill Mietek#Miecu
+cluster2: Imperial God#EUNE, Kandoras#EUNE
+cluster3: NERF AKOYMIANOΣ#EUNE, 使用暴力就已經被打敗了#osu, S1mplu#EUNE
+Response:
+```json
+{
+    "cluster1": "Poland",
+    "cluster2": "Unknown",
+    "cluster3": "Greece"
+}
+```
+
+Prompt:
+You will receive a list of clusters, each cluster has multiple player names separated by commas.
+Analyze the names in each cluster and return a JSON object where keys are cluster IDs (e.g. cluster1) and values are the most likely country of origin for that entire cluster.
+Clusters are from Eastern Europe or the Middle East (EUNE region).
+Only return the JSON object.
+The content is expected to be a JSON string like:
+{ "cluster1": "Poland", "cluster2": "Turkey" }
+
+cluster1: Mk 水牛#DIFF, jolvaneziiigy#EUNE, Turbo Inter#INTER, Tufamin#EUNE, PingvinWarrior#EUNE
+cluster2: Hxpo#EUNE, Aurelion smol#Drake, Mayer16#EUNE, Kris23#2203, Panda#12223, Gluten#000, Shrimple#mmmm, Forklift Gaming#EUNE, Bush Gaming#EUNE, GombiGO#EUNE, Coockie#EUNE, Armsdale#SMILE, peanut#nutss
+cluster3: Allinaris#EUNE, Shadow Targon#EUNE, Nefe Rockz#noob, poor performance#BAD, Centek#2137, BlackPointOfView#EUNE
+Response:
+```json
+{
+  "cluster1": "Turkey",
+  "cluster2": "Poland",
+  "cluster3": "Poland"
+}
+```
+
+Prompt:
+You will receive a list of clusters, each cluster has multiple player names separated by commas.
+Analyze the names in each cluster and return a JSON object where keys are cluster IDs (e.g. cluster1) and values are the most likely country of origin for that entire cluster.
+Clusters are from Eastern Europe or the Middle East (EUNE region).
+Only return the JSON object.
+The content is expected to be a JSON string like:
+{ "cluster1": "Poland", "cluster2": "Turkey" }
+
+cluster1: KicsiTubi#EUNE, CsíkosZogni#EUNE, Dr Kupak#EUNE, Mr Pék Man#EUNE, SajtosMcRoyal#TheVR, Chadrian#KISA, Wodkings#EUNE, Patrichelo#JÄGER, EepySleepy#EUNE
+cluster2: Bajlando#BLDM, Sunvaar#6399, LaurenceLouise#ELDI
+cluster3: 2dlroyalvodka#8941, Csacsusz#20121, PunciPuszilva#420, Fung Pu Kanda#nincs, SKT OpenHeimer#SKT, DPS Fddh#EUNE, V0RTEXxX#1998
+Response:
+```json
+{
+  "cluster1": "Hungary",
+  "cluster2": "Romania",
+  "cluster3": "Hungary"
+}
+```
+
+Prompt:
+You will receive a list of clusters, each cluster has multiple player names separated by commas.
+Analyze the names in each cluster and return a JSON object where keys are cluster IDs (e.g. cluster1) and values are the most likely country of origin for that entire cluster.
+Clusters are from Eastern Europe or the Middle East (EUNE region).
+Only return the JSON object.
+The content is expected to be a JSON string like:
+{ "cluster1": "Poland", "cluster2": "Turkey" }
+
+cluster1: ZbynioWodecki#EUNE, Azi#002, KrzysioKrawczyk#EUNE
+cluster2: Elfwigs#EUNE, g4de#EUNE, FozzyRO#EUNE
+cluster3: ToJaKudry#EUNE, JoD Bielu20#EUNE
+Response:
+```json
+{
+  "cluster1": "Poland",
+  "cluster2": "Romania",
+  "cluster3": "Poland"
+}
+```
+
+Prompt:
+You will receive a list of clusters, each cluster has multiple player names separated by commas.
+Analyze the names in each cluster and return a JSON object where keys are cluster IDs (e.g. cluster1) and values are the most likely country of origin for that entire cluster.
+Clusters are from Eastern Europe or the Middle East (EUNE region).
+Only return the JSON object.
+The content is expected to be a JSON string like:
+{ "cluster1": "Poland", "cluster2": "Turkey" }
+
+cluster1: STAR PLATINUM#OGÓR, Střízlivý Jelen#EUNE, BicycleTom123987#EUNE, Rullaaja#RULLA, kgdsayudyasg#EUNE, Aozora#kumo, Wajki#EUNE, tsenosbb#EUNE, iYodduu#EUNE, Valentino69#EUNE, Dark Purple Fire#EUNE
+cluster2: xDEvilsclawx#EUNE, CallMeL146#EUNE, G1 PARKER#EUNE, DE KASPAROV#EUNE, QuartzWhale#EUNE, szuwaks#EUNE, Im a psychic#EUNE
+cluster3: Thrinita#2143, ElroynB#EUNE, WoCaoHaoHaiYo#EUNE, Marc Casado#1899, THSNDD#EUNE, L9SDZN#SDZN, Big Spencer#3443, Shibafu#EUNE
+Response:
+```json
+{
+  "cluster1": "Poland",
+  "cluster2": "Poland",
+  "cluster3": "Romania"
+}
+```
+
+Prompt:
+You will receive a list of clusters, each cluster has multiple player names separated by commas.
+Analyze the names in each cluster and return a JSON object where keys are cluster IDs (e.g. cluster1) and values are the most likely country of origin for that entire cluster.
+Clusters are from Eastern Europe or the Middle East (EUNE region).
+Only return the JSON object.
+The content is expected to be a JSON string like:
+{ "cluster1": "Poland", "cluster2": "Turkey" }
+
+cluster1: Zaerpl#EUNE, Y0sU#EUNE, Grot#2138, saapnupuas#EUNE, Abysso66#EUNE, Xanvix#EUNE, Neil Breen#Giz, ewoksuuu#ewoks
+cluster2: swirekzwirek77#8249, kacpertocwel#12345, eugeniusz krab 7#80085, ºTERRORº#vegan, Annie West#3000, huCky48#EUNE, PepeKaoś420#EUNE, Yiorgos#WUJU, mrflake1#EUNE
+cluster3: フィーダ#1313, Weeb from Japan#EUNE, slowgaze#5170, Geriblue#EUNE, fygmr#EUNE, teemo 1500000 k#EUNE
+Response:
+```json
+{
+  "cluster1": "Poland",
+  "cluster2": "Poland",
+  "cluster3": "Poland"
+}
+```
+
+Prompt:
+You will receive a list of clusters, each cluster has multiple player names separated by commas.
+Analyze the names in each cluster and return a JSON object where keys are cluster IDs (e.g. cluster1) and values are the most likely country of origin for that entire cluster.
+Clusters are from Eastern Europe or the Middle East (EUNE region).
+Only return the JSON object.
+The content is expected to be a JSON string like:
+{ "cluster1": "Poland", "cluster2": "Turkey" }
+
+cluster1: toørG ma I#EUNE, DreamyDoll#YUM, PoisonousCloud#Daddy
+cluster2: wwadc#EUNE, Gnojaczek#EUNE, Overthatstuff#EUNE, IM A PROBLEM#GG EZ, RomanticoErotico#EUNE, Treyy l#EUNE
+cluster3: BrainStartu#EUNE, jjjaka#4848
+Response:
+```json
+{
+  "cluster1": "Turkey",
+  "cluster2": "Poland",
+  "cluster3": "Poland"
+}
+```
+
+Prompt:
+You will receive a list of clusters, each cluster has multiple player names separated by commas.
+Analyze the names in each cluster and return a JSON object where keys are cluster IDs (e.g. cluster1) and values are the most likely country of origin for that entire cluster.
+Clusters are from Eastern Europe or the Middle East (EUNE region).
+Only return the JSON object.
+The content is expected to be a JSON string like:
+{ "cluster1": "Poland", "cluster2": "Turkey" }
+
+cluster1: NaniTF#KAMi, NaniTF#Shim
+cluster2: InfernalAlzrius#INFRN, InfernalWolf#INFRN, InfernalAyhao#EUNE, AlexandroviciTeP#EUNE, InfernalSpeed#INFRN, InfernalThief#INFRN
+cluster3: Kuze#8867, M1SHE#curuk, Victhor#GOD, cola#EUNE, GordeX#EUNE, Aron The Plumber#BBC, Goodroman#EUNE, Darelaz#42069, sho0w#EUNE, gorast333#EUNE, ProudFeetLicker#046, MenKusH#KAMEN, Toni#DOGG
+Response:
+```json
+{
+  "cluster1": "Unknown",
+  "cluster2": "Romania",
+  "cluster3": "Bulgaria"
+}
+```
+
+Prompt:
+You will receive a list of clusters, each cluster has multiple player names separated by commas.
+Analyze the names in each cluster and return a JSON object where keys are cluster IDs (e.g. cluster1) and values are the most likely country of origin for that entire cluster.
+Clusters are from Eastern Europe or the Middle East (EUNE region).
+Only return the JSON object.
+The content is expected to be a JSON string like:
+{ "cluster1": "Poland", "cluster2": "Turkey" }
+
+cluster1: ÄppléJäck#EUNE, Sk0cz3kXD#EUNE, PanKanapeczka#GRUBY, Ðorek#EUNE, SkibidiMirasek#goat, chickenginger#2423
+cluster2: Larsse#EUNE, KitaKoSalama14#EUNE, Iccaruz#1321, StarKitten#EUNE, Žurio sam poIako#EUNE, NEVERMORE#TKIY
+cluster3: Ny1ander112#EUNE, all4thew1n#9799, Mårt#8504, DarkBetweenLight#EUNE, Serbanel#EUNE, Lucke112#EUNE, Baba Yagă#EUNE, TooKawaii#EUNE, Od3n112#EUNE, CżR#EUNE, LouKouMoSKoNh#EUNE
+Response:
+```json
+{
+  "cluster1": "Poland",
+  "cluster2": "Serbia",
+  "cluster3": "Romania"
+}
+```
+
+Prompt:
+You will receive a list of clusters, each cluster has multiple player names separated by commas.
+Analyze the names in each cluster and return a JSON object where keys are cluster IDs (e.g. cluster1) and values are the most likely country of origin for that entire cluster.
+Clusters are from Eastern Europe or the Middle East (EUNE region).
+Only return the JSON object.
+The content is expected to be a JSON string like:
+{ "cluster1": "Poland", "cluster2": "Turkey" }
+
+cluster1: Peak Comedy#EUNE, dákólord#66666, Badabummmm#EUNE, almáscsipa#EUNE, Mangu44444#EUNE, Demonbeni#EUNE
+cluster2: ΓΙΟΥΡΑΣ#2104, 勒克斯#槳板衝浪, Im4g1ne YourLife#EUNE, Torukami#EUNE, wizard#11235, PARAD1CE#PRDC, Urgod#Halk, Frozenzo250#EUNE, Μαύρη Γυναίκα#XALK, PagatosGr#1997, RASPASOJBATOOOOO#2331, Karrovich#EUNE, Jan Paweł II#7702, MegaImpossible#MEGAI
+cluster3: KofejnGOAT#GOAT, Bublifukk69#EUNE, NULANULTA#4412
+Response:
+```json
+{
+  "cluster1": "Hungary",
+  "cluster2": "Greece",
+  "cluster3": "Czech Republic"
+}
+```
+
+Prompt:
+You will receive a list of clusters, each cluster has multiple player names separated by commas.
+Analyze the names in each cluster and return a JSON object where keys are cluster IDs (e.g. cluster1) and values are the most likely country of origin for that entire cluster.
+Clusters are from Eastern Europe or the Middle East (EUNE region).
+Only return the JSON object.
+The content is expected to be a JSON string like:
+{ "cluster1": "Poland", "cluster2": "Turkey" }
+
+cluster1: SerowyKrasnal#666, HarleyQuinnHQHA#EUNE, Demonˆs Grasp 影#hers, WolfDalePl#EUNE, 0wisamo#2137, 50CALJHIN#6969, ärczi#6117, Angelˆs Kiss 光#his, kakka123#123, paska#456, Netrox#frog
+cluster2: DYR#888, Virjhin#only4
+cluster3: Wiadrospad#EUNE, G2 LegendzQ#EUNE, kouretogiannis#EUNE, LegendMagicxD#EUNE, TU SWORD#EUNE, LeMaestro#EUNE
+Response:
+```json
+{
+  "cluster1": "Poland",
+  "cluster2": "Turkey",
+  "cluster3": "Poland"
+}
+```
+
+Prompt:
+You will receive a list of clusters, each cluster has multiple player names separated by commas.
+Analyze the names in each cluster and return a JSON object where keys are cluster IDs (e.g. cluster1) and values are the most likely country of origin for that entire cluster.
+Clusters are from Eastern Europe or the Middle East (EUNE region).
+Only return the JSON object.
+The content is expected to be a JSON string like:
+{ "cluster1": "Poland", "cluster2": "Turkey" }
+
+cluster1: EndBikeRR#5195, Dimdiamond#EUNE, LochuSS#EUNE, 100yanKolev#asd, jormagander#JM7, Balista#FEAR, 9x Vayne#EUNE, banana779#EUNE, Corangeres#19022, huligancho0#HOT, KlipoBG#EUNE, The Red Ezreal#REDEZ, Squishybelf#5592
+cluster2: miha03#1001, Thucydides#EUNE, LeonJ777#EUNE, BagerJovica1312#EUNE
+cluster3: xCattleya#EUNE, Michak12#EUNE, 2fast2think#run, A1most Dead#EUNE, Kotioaonum#EUNE, fotias#SKG
+Response:
+```json
+{
+  "cluster1": "Bulgaria",
+  "cluster2": "Serbia",
+  "cluster3": "Greece"
+}
+```
+
+Prompt:
+You will receive a list of clusters, each cluster has multiple player names separated by commas.
+Analyze the names in each cluster and return a JSON object where keys are cluster IDs (e.g. cluster1) and values are the most likely country of origin for that entire cluster.
+Clusters are from Eastern Europe or the Middle East (EUNE region).
+Only return the JSON object.
+The content is expected to be a JSON string like:
+{ "cluster1": "Poland", "cluster2": "Turkey" }
+
+cluster1: γκρούκντ#EUNE, MesterBiver#Vlad, Depressed Moon#Empty, Nilah Armstrong#EUNE, Masterstefan18#EUNE, DayHype#2025, Radkieł#EUNE, Foxuri#Daddy, SikyOnCrystal#Siky, monster6king9#3360, fhalaw#EUNE, dopamine maxxing#ogs
+cluster2: ELATE ZEFYRI#GYPSY, VreaX#EUNE, ßRÄłÑDĚÄDŁY#8400, n1z#4444, Karhea Kalkkuna#EUNE, ΩΨΙΚΛΠ#OLI, MMMM SHE IS 9#EUNE, undying desire#憎しみ, CHASE#LOU1, Cojojo#EUNE, bluebird#freak, Dead Soul Inside#DSI, fake9 AWERO#EUNE, BAAAAAAAABYLELE#EUNE, iScythe#2442, CWL Amy#chall, Luzmawrare#EUNE, IIIlllIllIllIlII#EUNE, Hofibauer#SVK, poor and brown#Indie, Debonair Rose#EUNE0, Cruel World#Freak, JANNA OP#EUNE
+cluster3: Umbrelon#XXXX, LIL Sweden#EUNE1
+Response:
+```json
+{
+  "cluster1": "Greece",
+  "cluster2": "Turkey",
+  "cluster3": "Sweden"
+}
+```
+
+Prompt:
+You will receive a list of clusters, each cluster has multiple player names separated by commas.
+Analyze the names in each cluster and return a JSON object where keys are cluster IDs (e.g. cluster1) and values are the most likely country of origin for that entire cluster.
+Clusters are from Eastern Europe or the Middle East (EUNE region).
+Only return the JSON object.
+The content is expected to be a JSON string like:
+{ "cluster1": "Poland", "cluster2": "Turkey" }
+
+cluster1: Arthμr Leywin#EUNE, OSIEM PIĘĆ#EUNE, TheSwedishArabic#3648, TheAssassin4040#EUNE, BOZE DAJ MI SILE#EUNE
+cluster2: Chimerasleader#EUNE, MämmiIoordi#EUNE, KwsthsTsiboukhss#Tua
+cluster3: Tobik#9601, Zeus#ELG, Habib Kayn#EUNE
+Response:
+```json
+{
+  "cluster1": "Poland",
+  "cluster2": "Greece",
+  "cluster3": "Turkey"
+}
+```
+
+Prompt:
+You will receive a list of clusters, each cluster has multiple player names separated by commas.
+Analyze the names in each cluster and return a JSON object where keys are cluster IDs (e.g. cluster1) and values are the most likely country of origin for that entire cluster.
+Clusters are from Eastern Europe or the Middle East (EUNE region).
+Only return the JSON object.
+The content is expected to be a JSON string like:
+{ "cluster1": "Poland", "cluster2": "Turkey" }
+
+cluster1: 4Hokage6#9637, MelonFragz#6969, Nerf Bastion#69420, HardSafe#1999, Souptis#Soup, Baba Yaga#i am, PredatorGamma#EUNE
+cluster2: not him#NThm, Ench Supp Suck#EUNE, i use chains#1307
+cluster3: CapocommisioneEU#1361, DO NOT TRUST ANY#4REAL, Fragles#8728, gilike23 hun#EUNE, TDM Diamond#MKD, SungJinwoo#SJWW, KlerikFU#EUNE, Tga Za Jug#EUNE
+Response:
+```json
+{
+  "cluster1": "Russia",
+  "cluster2": "Turkey",
+  "cluster3": "Serbia"
+}
+```
+
+Prompt:
+You will receive a list of clusters, each cluster has multiple player names separated by commas.
+Analyze the names in each cluster and return a JSON object where keys are cluster IDs (e.g. cluster1) and values are the most likely country of origin for that entire cluster.
+Clusters are from Eastern Europe or the Middle East (EUNE region).
+Only return the JSON object.
+The content is expected to be a JSON string like:
+{ "cluster1": "Poland", "cluster2": "Turkey" }
+
+cluster1: YDR0KOLIN69#flame, Black Diamond#Crazy, GAMOTHNPATRA#TTTT
+cluster2: N163R#JD1, KÜRWY W TEÄMIE#JEBÄĆ, Chill guy#Luz
+cluster3: RafciuXD#EUNE, Soarele si Luna#EUNE, Nlkec#EUNE, Vongo#146, Za 5 bede twoj#111
+Response:
+```json
+{
+  "cluster1": "Turkey",
+  "cluster2": "Poland",
+  "cluster3": "Poland"
+}
+```
+
+Prompt:
+You will receive a list of clusters, each cluster has multiple player names separated by commas.
+Analyze the names in each cluster and return a JSON object where keys are cluster IDs (e.g. cluster1) and values are the most likely country of origin for that entire cluster.
+Clusters are from Eastern Europe or the Middle East (EUNE region).
+Only return the JSON object.
+The content is expected to be a JSON string like:
+{ "cluster1": "Poland", "cluster2": "Turkey" }
+
+cluster1: Zob3a#EUNE, حراق#DTF, Doviculus#MOUTH, Î ÑØXÜS TÝRÄÑT Î#sionx, little devil#boody, killer noob#EUNE, 3bkrino#404, 7let m74e#EUNE, مصر مش ام الدنيا#DTF, ZexiouS#EUNE
+cluster2: ŻANKLOD W AUCIE#low, FIFONŻ W AUCIE#KMM, oldkid#4444, Yaman1444#KMM, Teemo Destroyer#EUNE, KALELEON W AUCIE#2137, rozpruwaczzz#EUNE
+cluster3: FF Zeus#EUNE, Hi Im Veigar#0420, miwu#フロー状態, HaerinsToilet#NWJ, Depsky#EUNE, Goatimus#MAXIM, Zebrus#EUNE, 191cm78kg18cm#EUNE, Addict#Nikos, I IIII IIIIIII#ig u2, Σκλάβος#yoban, ShadowFlare46#NGT, MokryKrzyś#PUMEX, D2PoliceGotMe#EUNE, IllTakeYourBuffs#JUNG
+Response:
+```json
+{
+  "cluster1": "Egypt",
+  "cluster2": "Poland",
+  "cluster3": "Poland"
+}
+```
+
+Prompt:
+You will receive a list of clusters, each cluster has multiple player names separated by commas.
+Analyze the names in each cluster and return a JSON object where keys are cluster IDs (e.g. cluster1) and values are the most likely country of origin for that entire cluster.
+Clusters are from Eastern Europe or the Middle East (EUNE region).
+Only return the JSON object.
+The content is expected to be a JSON string like:
+{ "cluster1": "Poland", "cluster2": "Turkey" }
+
+cluster1: Bobitzar#bwaba, ArchaniołGabriel#JDJD, Zoltraak#DARK, playboi clau#opium, Popa din curte#EUNE, RaaaaDZiK#EUNE, Mișu#ATL, PlmBlestemulEmo#emo
+cluster2: Skull Knight#95392, master981#EUNE, ETSPP#EUNE, EndyyX#EUNE, Gathar#EUNE
+cluster3: venom7T#EUNE, Z Master Z#Z5Z, Bebo2002Xx#EUNE, MzmzInPyjama#EUNE, UncleJunior79#EUNE, reda in pyjama#EUNE, ANB Eiad#eddy, JazminxX#8888
+Response:
+```json
+{
+  "cluster1": "Romania",
+  "cluster2": "Poland",
+  "cluster3": "Egypt"
+}
+```
+
+Prompt:
+You will receive a list of clusters, each cluster has multiple player names separated by commas.
+Analyze the names in each cluster and return a JSON object where keys are cluster IDs (e.g. cluster1) and values are the most likely country of origin for that entire cluster.
+Clusters are from Eastern Europe or the Middle East (EUNE region).
+Only return the JSON object.
+The content is expected to be a JSON string like:
+{ "cluster1": "Poland", "cluster2": "Turkey" }
+
+cluster1: マテイスタチク#六六六, ReportMyTeam#pinda, PivkoM#EUNE, Dollár Prýnc#EUNE, BrocoLeeCe#EUNE, Glidatoreus#EUNE, BroKein#EUNE, Pálivá paprika#kamca, L1onLuck#123, DAIKΕN#EUNE
+cluster2: Julcia00#EUNE, MrPapryk34#EUNE, Syzyf#12311, Schlecht Sparrow#UrMum, Pedro9873#EUNE, VitaminD420#EUNE
+cluster3: Lae Zel fan#EUNE, Μασάτος#4444, IshigamisDeath1#Inter, pluje ci do dupy#short, CWLkatamaran#5962, Stuie54#EUNE, layys22#EUNE, Monkey Do#LAG, Gwensational#Feet, Giorgis#KG45
+Response:
+```json
+{
+  "cluster1": "Czech Republic",
+  "cluster2": "Poland",
+  "cluster3": "Greece"
+}
+```
+
+Prompt:
+You will receive a list of clusters, each cluster has multiple player names separated by commas.
+Analyze the names in each cluster and return a JSON object where keys are cluster IDs (e.g. cluster1) and values are the most likely country of origin for that entire cluster.
+Clusters are from Eastern Europe or the Middle East (EUNE region).
+Only return the JSON object.
+The content is expected to be a JSON string like:
+{ "cluster1": "Poland", "cluster2": "Turkey" }
+
+cluster1: MrMagicMan#magic, Roman Jistá Rána#EUNE, smrtonos#EUNE
+cluster2: not cane#EUNE, Čukam Astal#EUNE
+cluster3: xPie#EUNE, hredmond#EUNE
+Response:
+```json
+{
+  "cluster1": "Czech Republic",
+  "cluster2": "Czech Republic",
+  "cluster3": "Poland"
+}
+```
+
+Prompt:
+You will receive a list of clusters, each cluster has multiple player names separated by commas.
+Analyze the names in each cluster and return a JSON object where keys are cluster IDs (e.g. cluster1) and values are the most likely country of origin for that entire cluster.
+Clusters are from Eastern Europe or the Middle East (EUNE region).
+Only return the JSON object.
+The content is expected to be a JSON string like:
+{ "cluster1": "Poland", "cluster2": "Turkey" }
+
+cluster1: pushmydeepsea#EUNE, Utierscorn#66050
+cluster2: Dz420#EUNE, MarchewkaaXD#EUNE, Lukieks#2137, Ωen#9913, xCeVeRr#EUNE, SeemsLOCK#EUNE, JeÐi#EUNE, Kotlecik#33133, TheSynJasia#EUNE
+cluster3: strasnanuda#6200, derson7331#EUNE, Morgotual#EUNE, MówMiKotq#EUNE, FREE WINTRADE#CHINA
+Response:
+```json
+{
+  "cluster1": "Romania",
+  "cluster2": "Poland",
+  "cluster3": "Poland"
+}
+```
+
+Prompt:
+You will receive a list of clusters, each cluster has multiple player names separated by commas.
+Analyze the names in each cluster and return a JSON object where keys are cluster IDs (e.g. cluster1) and values are the most likely country of origin for that entire cluster.
+Clusters are from Eastern Europe or the Middle East (EUNE region).
+Only return the JSON object.
+The content is expected to be a JSON string like:
+{ "cluster1": "Poland", "cluster2": "Turkey" }
+
+cluster1: Ujo Mrena#kkt, NitroG3n#121, موكشة#3000, Abenaky#abe, łupiński3#EUNE, BEAST mito#EUNE, حوكشة#169
+cluster2: Skin Shard#SSD, Szef Otis#Szef, Krzyśtoświr#EUNE, fvlvp#EUNE
+cluster3: Carry me queen#woof, ChickenSmiter#EUNE, Goddess#cici, ＭｉｌｆＨｕｎｔｅｒ#cold
+Response:
+```json
+{
+  "cluster1": "Poland",
+  "cluster2": "Poland",
+  "cluster3": "Poland"
+}
+```
+
+Prompt:
+You will receive a list of clusters, each cluster has multiple player names separated by commas.
+Analyze the names in each cluster and return a JSON object where keys are cluster IDs (e.g. cluster1) and values are the most likely country of origin for that entire cluster.
+Clusters are from Eastern Europe or the Middle East (EUNE region).
+Only return the JSON object.
+The content is expected to be a JSON string like:
+{ "cluster1": "Poland", "cluster2": "Turkey" }
+
+cluster1: Klasu1x#5371, aksuskaani#十十十十, Zimbabwe Warboss#ODENS, DJJytky#EUNE, nappa#EUNE, DJJYTKY1#EUNE, EStaappa#EUNE
+cluster2: tft bronze acc#trash, NullVoid#Zero, xApArAdEkTOsx#EUNE, 1Parku2#PET, Republicii 102#EUNE, Fox Force#EUNE, Al Gapone#Gap, Arswat#pogg
+cluster3: doomedphoenix14#arkam, Wizzard Pigglett#DMG, 0KingOfTheNihgt0#EUNE, el gamed#ZSC, BeatMeBashMe#EUNE, Bomba#Zsc, Reportgiatietsi#EUNE
+Response:
+```json
+{
+  "cluster1": "Poland",
+  "cluster2": "Turkey",
+  "cluster3": "Poland"
+}
+```
+
+Prompt:
+You will receive a list of clusters, each cluster has multiple player names separated by commas.
+Analyze the names in each cluster and return a JSON object where keys are cluster IDs (e.g. cluster1) and values are the most likely country of origin for that entire cluster.
+Clusters are from Eastern Europe or the Middle East (EUNE region).
+Only return the JSON object.
+The content is expected to be a JSON string like:
+{ "cluster1": "Poland", "cluster2": "Turkey" }
+
+cluster1: Another Day#000, Hand Of Noxus#N0XUS, GuessWh028#EUNE, MyM0msM1stake#Shhh, Ulew#Wylew, Dany#0204, JHINTLEMON 4#ITENG, creezol#JQJQ, Nestor El Mæstro#EUNE, Dzonibato#2002
+cluster2: Gáspár Laci feje#EUNE, L9 N33D My Pills#LÓFSZ
+cluster3: Elzaak#NEKO, Król0wa pszczół#EUNE, TheKurdy#EUNE
+Response:
+```json
+{
+  "cluster1": "Poland",
+  "cluster2": "Hungary",
+  "cluster3": "Poland"
+}
+```
+
+Prompt:
+You will receive a list of clusters, each cluster has multiple player names separated by commas.
+Analyze the names in each cluster and return a JSON object where keys are cluster IDs (e.g. cluster1) and values are the most likely country of origin for that entire cluster.
+Clusters are from Eastern Europe or the Middle East (EUNE region).
+Only return the JSON object.
+The content is expected to be a JSON string like:
+{ "cluster1": "Poland", "cluster2": "Turkey" }
+
+cluster1: Splash21 O Flash#EUNE, Comatose#EUNE, SYNOVEX#AD3, Gerge12 O BaTmAn#EUNE
+cluster2: demonfcker#9991, Fizz In My Pants#ROLF, Nos2x#1732, Chorus Fruit#1318, alekopetrov#8008
+cluster3: ADHEADZIK#ROPE, I am illegal #EUNE, Captain Cleph#EUNE, Profesor Kaczker#EUNE, OwnerGreco#2310, Cubík#Cuba, Nestea Drinker #EUNE, EpicNinjaser#HOMM3, Pink142#CHOOJ, JettroB#EUNE, ΞΥΠΝΑ ΕΛΛΗΝ#7584, panoss2900#EUNE, RondomBanana#yes
+Response:
+```json
+{
+  "cluster1": "Turkey",
+  "cluster2": "Russia",
+  "cluster3": "Greece"
+}
+```
+
+Prompt:
+You will receive a list of clusters, each cluster has multiple player names separated by commas.
+Analyze the names in each cluster and return a JSON object where keys are cluster IDs (e.g. cluster1) and values are the most likely country of origin for that entire cluster.
+Clusters are from Eastern Europe or the Middle East (EUNE region).
+Only return the JSON object.
+The content is expected to be a JSON string like:
+{ "cluster1": "Poland", "cluster2": "Turkey" }
+
+cluster1: Brainlagx#0926, Akica#0202
+cluster2: Δφ0#LAPL, Kirikabu#green, TheDeztroyer#EUNE
+cluster3: Cikdelkim#1229, Rordelins#9117
+Response:
+```json
+{
+  "cluster1": "Poland",
+  "cluster2": "Greece",
+  "cluster3": "Turkey"
+}
+```
+
+Prompt:
+You will receive a list of clusters, each cluster has multiple player names separated by commas.
+Analyze the names in each cluster and return a JSON object where keys are cluster IDs (e.g. cluster1) and values are the most likely country of origin for that entire cluster.
+Clusters are from Eastern Europe or the Middle East (EUNE region).
+Only return the JSON object.
+The content is expected to be a JSON string like:
+{ "cluster1": "Poland", "cluster2": "Turkey" }
+
+cluster1: kostaras08#EUNE, CWELNEXXU#EUNE, Ne0nChapter#EUNE, KuroFujiwara#Kuro, Bzz33#EUNE
+cluster2: 23NoLe#EUNE, Brlok123#EUNE, Andjeo Cuvar#EUNE, DJKDDDD#EUNE, SlanWorshiper#EUNE, Yishin#666
+cluster3: miwi#muwu, saikosouru#0000
+Response:
+```json
+{
+  "cluster1": "Greece",
+  "cluster2": "Serbia",
+  "cluster3": "Poland"
+}
+```
+
+Prompt:
+You will receive a list of clusters, each cluster has multiple player names separated by commas.
+Analyze the names in each cluster and return a JSON object where keys are cluster IDs (e.g. cluster1) and values are the most likely country of origin for that entire cluster.
+Clusters are from Eastern Europe or the Middle East (EUNE region).
+Only return the JSON object.
+The content is expected to be a JSON string like:
+{ "cluster1": "Poland", "cluster2": "Turkey" }
+
+cluster1: D Zêus#EUNE, mr zeuos#lol
+cluster2: Dakyy#123, Neskeee#123
+cluster3: NathKitty#MSL, zwykły maciej#beton
+Response:
+```json
+{
+  "cluster1": "Greece",
+  "cluster2": "Turkey",
+  "cluster3": "Poland"
+}
+```
+
+Prompt:
+You will receive a list of clusters, each cluster has multiple player names separated by commas.
+Analyze the names in each cluster and return a JSON object where keys are cluster IDs (e.g. cluster1) and values are the most likely country of origin for that entire cluster.
+Clusters are from Eastern Europe or the Middle East (EUNE region).
+Only return the JSON object.
+The content is expected to be a JSON string like:
+{ "cluster1": "Poland", "cluster2": "Turkey" }
+
+cluster1: Dau si Plec xD#Ady, xX Jhin Tonic Xx#6969
+cluster2: GrabosCZ#GRBCZ, Abuíčekk#EUNE, L4szo#L4szo, Vévodkyně Tina#MOMMY, DåvyJønes#BIER
+cluster3: AJETADY5UCKA#EUNE, Tupák Čurej#9235
+Response:
+```json
+{
+    "cluster1": "Romania",
+    "cluster2": "Czech Republic",
+    "cluster3": "Czech Republic"
+}
+```
+
+Prompt:
+You will receive a list of clusters, each cluster has multiple player names separated by commas.
+Analyze the names in each cluster and return a JSON object where keys are cluster IDs (e.g. cluster1) and values are the most likely country of origin for that entire cluster.
+Clusters are from Eastern Europe or the Middle East (EUNE region).
+Only return the JSON object.
+The content is expected to be a JSON string like:
+{ "cluster1": "Poland", "cluster2": "Turkey" }
+
+cluster1: SnekyTurtle#EUNE, stealer on bush#EUNE, Gnojni iscjedak#67568, Domer#seyuh, Goolik#EUNE
+cluster2: Wilku91#EUNE, obebek#2508
+cluster3: ReytuO#EUNE, kluchamk#4043, MR JaBaRi#EUNE
+Response:
+```json
+{
+  "cluster1": "Poland",
+  "cluster2": "Poland",
+  "cluster3": "Turkey"
+}
+```
+
+Prompt:
+You will receive a list of clusters, each cluster has multiple player names separated by commas.
+Analyze the names in each cluster and return a JSON object where keys are cluster IDs (e.g. cluster1) and values are the most likely country of origin for that entire cluster.
+Clusters are from Eastern Europe or the Middle East (EUNE region).
+Only return the JSON object.
+The content is expected to be a JSON string like:
+{ "cluster1": "Poland", "cluster2": "Turkey" }
+
+cluster1: Tooli#EUW, ARISTOCAT#EUNE
+cluster2: SeluvaJr#EUNE, chocoghost#EUNE
+cluster3: Yami Sukehiro#Kerm, Buberts#EUNE
+Response:
+```json
+{
+  "cluster1": "Poland",
+  "cluster2": "Turkey",
+  "cluster3": "Turkey"
+}
+```
+
+Prompt:
+You will receive a list of clusters, each cluster has multiple player names separated by commas.
+Analyze the names in each cluster and return a JSON object where keys are cluster IDs (e.g. cluster1) and values are the most likely country of origin for that entire cluster.
+Clusters are from Eastern Europe or the Middle East (EUNE region).
+Only return the JSON object.
+The content is expected to be a JSON string like:
+{ "cluster1": "Poland", "cluster2": "Turkey" }
+
+cluster1: Shuvey#EUNE, OZBOSTOL#SZEF, cycë wersow#CYCE
+cluster2: Dark King#xdd, Jekyll and Hyde#EUNE, LAINO v KOSMOSA#EUNE
+cluster3: Patrick Jane#2922, XPROXER#EUNE
+Response:
+```json
+{
+    "cluster1": "Poland",
+    "cluster2": "Poland",
+    "cluster3": "Poland"
+}
+```
+
+Prompt:
+You will receive a list of clusters, each cluster has multiple player names separated by commas.
+Analyze the names in each cluster and return a JSON object where keys are cluster IDs (e.g. cluster1) and values are the most likely country of origin for that entire cluster.
+Clusters are from Eastern Europe or the Middle East (EUNE region).
+Only return the JSON object.
+The content is expected to be a JSON string like:
+{ "cluster1": "Poland", "cluster2": "Turkey" }
+
+cluster1: Mastering Yasuo#EUNE, HEADPHONES115599#EUNE, však vojta ne#EUNE
+cluster2: KRAT0MKRAZYSTAVY#EUNE, MonkeTopG#EUNE
+cluster3: Tentakill#DDT, BloodLust619#EUNE
+Response:
+```json
+{
+  "cluster1": "Czech Republic",
+  "cluster2": "Poland",
+  "cluster3": "Turkey"
+}
+```
+
+Prompt:
+You will receive a list of clusters, each cluster has multiple player names separated by commas.
+Analyze the names in each cluster and return a JSON object where keys are cluster IDs (e.g. cluster1) and values are the most likely country of origin for that entire cluster.
+Clusters are from Eastern Europe or the Middle East (EUNE region).
+Only return the JSON object.
+The content is expected to be a JSON string like:
+{ "cluster1": "Poland", "cluster2": "Turkey" }
+
+cluster1: TRK DaBaby#EUNE, THE BILLG#EUNE
+cluster2: Qubbix#EUNE, pdf123321#7777, CeRry#1617
+cluster3: WhiteShader#EUNE, Mue3rto#EUNE
+Response:
+```json
+{
+    "cluster1": "Turkey",
+    "cluster2": "Poland",
+    "cluster3": "Poland"
+}
+```
+
+Prompt:
+You will receive a list of clusters, each cluster has multiple player names separated by commas.
+Analyze the names in each cluster and return a JSON object where keys are cluster IDs (e.g. cluster1) and values are the most likely country of origin for that entire cluster.
+Clusters are from Eastern Europe or the Middle East (EUNE region).
+Only return the JSON object.
+The content is expected to be a JSON string like:
+{ "cluster1": "Poland", "cluster2": "Turkey" }
+
+cluster1: TAX Florentini#EUNE, FaΙΙeη#EUNE, IronSide31#EUNE
+cluster2: Zegreth#EUNE, AlzHeimmerDinger#EUNE
+cluster3: idk good name#EUNE, MrSherwood#3232
+Response:
+```json
+{
+  "cluster1": "Romania",
+  "cluster2": "Turkey",
+  "cluster3": "United Kingdom"
+}
+```
+
+Prompt:
+You will receive a list of clusters, each cluster has multiple player names separated by commas.
+Analyze the names in each cluster and return a JSON object where keys are cluster IDs (e.g. cluster1) and values are the most likely country of origin for that entire cluster.
+Clusters are from Eastern Europe or the Middle East (EUNE region).
+Only return the JSON object.
+The content is expected to be a JSON string like:
+{ "cluster1": "Poland", "cluster2": "Turkey" }
+
+cluster1: Dovahkiin#3id, Crantius Colto#Maid
+cluster2: wiktor44602#EUNE, StaryPoPerle#EUNE
+cluster3: ˆØPTÌMØÛŠˆ#EUNE, SHIKaMaR0U#EUNE, GhostSniperII#EUNE
+Response:
+```json
+{
+  "cluster1": "Romania",
+  "cluster2": "Poland",
+  "cluster3": "Turkey"
+}
+```
+
+Prompt:
+You will receive a list of clusters, each cluster has multiple player names separated by commas.
+Analyze the names in each cluster and return a JSON object where keys are cluster IDs (e.g. cluster1) and values are the most likely country of origin for that entire cluster.
+Clusters are from Eastern Europe or the Middle East (EUNE region).
+Only return the JSON object.
+The content is expected to be a JSON string like:
+{ "cluster1": "Poland", "cluster2": "Turkey" }
+
+cluster1: philOSOPHY04#EUNE, aL3xˆ#EUNE
+cluster2: falakrodaimonas#baldd, KARISPIRIDIS#MILIO
+cluster3: SipsoneczeK#EUNE, ŁUCZU#EUNE
+Response:
+```json
+{
+  "cluster1": "Romania",
+  "cluster2": "Greece",
+  "cluster3": "Poland"
+}
+```
+
+Prompt:
+You will receive a list of clusters, each cluster has multiple player names separated by commas.
+Analyze the names in each cluster and return a JSON object where keys are cluster IDs (e.g. cluster1) and values are the most likely country of origin for that entire cluster.
+Clusters are from Eastern Europe or the Middle East (EUNE region).
+Only return the JSON object.
+The content is expected to be a JSON string like:
+{ "cluster1": "Poland", "cluster2": "Turkey" }
+
+cluster1: susixd#EUNE, Nggtron#666
+cluster2: Diyoza#2137, T313#EUNE
+cluster3: Droid Panoramix#EUNE, łośSUPERktoś#1479
+Response:
+```json
+{
+  "cluster1": "Turkey",
+  "cluster2": "Turkey",
+  "cluster3": "Poland"
+}
+```
+
+Prompt:
+You will receive a list of clusters, each cluster has multiple player names separated by commas.
+Analyze the names in each cluster and return a JSON object where keys are cluster IDs (e.g. cluster1) and values are the most likely country of origin for that entire cluster.
+Clusters are from Eastern Europe or the Middle East (EUNE region).
+Only return the JSON object.
+The content is expected to be a JSON string like:
+{ "cluster1": "Poland", "cluster2": "Turkey" }
+
+cluster1: OBERDANGER#EUNE, Rampaging Oga#BoB
+cluster2: Areumji#2003, DK Sh0wMaker#DPLUS
+cluster3:  MAD CLIP RIP#EUNE, Whirrr#EUNE
+Response:
+```json
+{
+  "cluster1": "Germany",
+  "cluster2": "Korea",
+  "cluster3": "Greece"
+}
+```
+
+Prompt:
+You will receive a list of clusters, each cluster has multiple player names separated by commas.
+Analyze the names in each cluster and return a JSON object where keys are cluster IDs (e.g. cluster1) and values are the most likely country of origin for that entire cluster.
+Clusters are from Eastern Europe or the Middle East (EUNE region).
+Only return the JSON object.
+The content is expected to be a JSON string like:
+{ "cluster1": "Poland", "cluster2": "Turkey" }
+
+cluster1: エニグママン#SEEX, Wiedźma#3434
+Response:
+```json
+{
+  "cluster1": "Poland"
+}
+```
+

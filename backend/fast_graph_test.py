@@ -66,19 +66,22 @@ def add_player_stats_to_graph(G, db_path):
     cursor = conn.cursor()
 
     for node in G.nodes():
-        cursor.execute("SELECT names, feedscore, opscore FROM players WHERE puuid = ?", (node,))
+        cursor.execute("SELECT names, feedscore, opscore, country FROM players WHERE puuid = ?", (node,))
         row = cursor.fetchone()
         if row:
             latest_name = get_latest_name(row[0])
             feedscore = row[1]
             opscore = row[2]
+            country = row[3]
             G.nodes[node]["label_name"] = latest_name
             G.nodes[node]["feedscore"] = feedscore
             G.nodes[node]["opscore"] = opscore
+            G.nodes[node]["country"] = country
         else:
             G.nodes[node]["label_name"] = "Unknown#Unknown"
             G.nodes[node]["feedscore"] = "N/A"
             G.nodes[node]["opscore"] = "N/A"
+            G.nodes[node]["country"] = "N/A"
 
     conn.close()
 
@@ -103,36 +106,35 @@ def identify_clusters_and_highlights(G, min_edge_weight=3):
     """
     Identify connected components (clusters) and find the best/worst players in each.
     For large clusters, break them into smaller sub-groups based on edge weights.
+    Save all cluster and highlight info to clusters/clusters.json.
     """
-    # Create subgraph with only edges above threshold
     filtered_edges = [(u, v, d) for u, v, d in G.edges(data=True) if d.get('weight', 1) >= min_edge_weight]
     cluster_graph = nx.Graph()
     cluster_graph.add_edges_from(filtered_edges)
     
-    # Find connected components (clusters)
     base_clusters = list(nx.connected_components(cluster_graph))
     
     highlights = {
-        'best_op': set(),      # Best opscore in each cluster
-        'worst_feed': set()    # Worst feedscore in each cluster
+        'best_op': set(),
+        'worst_feed': set()
     }
+
+    cluster_data = []
     
     for cluster in base_clusters:
-        if len(cluster) < 2:  # Skip single-node clusters
+        if len(cluster) < 2:
             continue
         
-        # If cluster is large (>15 players), break it into sub-clusters
         if len(cluster) > 15:
             sub_clusters = break_into_subgroups(G, cluster, min_edge_weight)
             print(f"Large cluster ({len(cluster)} players) broken into {len(sub_clusters)} sub-groups")
         else:
             sub_clusters = [cluster]
         
-        # Find highlights in each sub-cluster
         for sub_cluster in sub_clusters:
             if len(sub_cluster) < 2:
                 continue
-                
+
             best_op_node = None
             worst_feed_node = None
             best_op_score = float('-inf')
@@ -140,8 +142,6 @@ def identify_clusters_and_highlights(G, min_edge_weight=3):
             
             for node in sub_cluster:
                 node_data = G.nodes[node]
-                
-                # Check opscore (higher is better)
                 try:
                     opscore = float(node_data.get('opscore', 0)) if node_data.get('opscore') != 'N/A' else 0
                     if opscore > best_op_score:
@@ -149,8 +149,7 @@ def identify_clusters_and_highlights(G, min_edge_weight=3):
                         best_op_node = node
                 except (ValueError, TypeError):
                     pass
-                
-                # Check feedscore (higher is worse)
+
                 try:
                     feedscore = float(node_data.get('feedscore', 0)) if node_data.get('feedscore') != 'N/A' else 0
                     if feedscore > worst_feed_score:
@@ -163,7 +162,29 @@ def identify_clusters_and_highlights(G, min_edge_weight=3):
                 highlights['best_op'].add(best_op_node)
             if worst_feed_node:
                 highlights['worst_feed'].add(worst_feed_node)
-    
+
+            cluster_data.append({
+                "members": list(sub_cluster),
+                "best_op": best_op_node,
+                "worst_feed": worst_feed_node
+            })
+
+    # Prepare JSON-serializable data
+    result_json = {
+        "clusters": cluster_data,
+        "highlights": {
+            "best_op": list(highlights['best_op']),
+            "worst_feed": list(highlights['worst_feed'])
+        }
+    }
+
+    # Ensure the 'clusters' directory exists
+    os.makedirs('clusters', exist_ok=True)
+
+    # Save to JSON
+    with open('clusters/clusters.json', 'a', encoding='utf-8') as f:
+        json.dump(result_json, f, indent=2)
+
     return highlights
 
 def break_into_subgroups(G, large_cluster, min_edge_weight):
@@ -185,17 +206,13 @@ def break_into_subgroups(G, large_cluster, min_edge_weight):
     subgroup_graph.add_nodes_from(large_cluster)
     subgroup_graph.add_edges_from(high_weight_edges)
     
-    # Find connected components in the high-weight graph
     sub_clusters = list(nx.connected_components(subgroup_graph))
     
-    # Filter out tiny sub-clusters and ensure we don't have too many
     valid_sub_clusters = [sc for sc in sub_clusters if len(sc) >= 3]
     
-    # If we still have very large sub-clusters, split them further
     final_sub_clusters = []
     for sc in valid_sub_clusters:
         if len(sc) > 20:
-            # Split large sub-cluster randomly into smaller groups
             sc_list = list(sc)
             chunk_size = 12
             for i in range(0, len(sc_list), chunk_size):
@@ -205,7 +222,6 @@ def break_into_subgroups(G, large_cluster, min_edge_weight):
         else:
             final_sub_clusters.append(sc)
     
-    # If no valid sub-clusters found, return the original as one group
     if not final_sub_clusters:
         return [large_cluster]
     
@@ -265,7 +281,7 @@ def visualize_graph(G, output_html="premade_network.html", show_standalone=True,
 
     # Add nodes with special coloring for highlights
     for node, data in G_viz.nodes(data=True):
-        label = f"{data.get('label_name', 'Unknown#Unknown')}\nFeedscore:{data.get('feedscore', 'N/A')}\nOpscore:{data.get('opscore', 'N/A')}"
+        label = f"{data.get('label_name', 'Unknown#Unknown')}\nFeedscore:{data.get('feedscore', 'N/A')}\nOpscore:{data.get('opscore', 'N/A')}\nCountry:{data.get('country','N/A')}"
         
         # Determine node color and size based on highlights
         if node in highlights['best_op'] and node in highlights['worst_feed']:
