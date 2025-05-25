@@ -46,7 +46,10 @@ def get_latest_name(names_str):
         return "Unknown#Unknown"
     
     try:
+        # Parse the JSON string to get the list of names
         names_list = json.loads(names_str)
+        
+        # Check if it's actually a list and not empty
         if isinstance(names_list, list) and len(names_list) > 0:
             latest_name = names_list[-1].strip()
             return latest_name if latest_name else "Unknown#Unknown"
@@ -95,6 +98,119 @@ def filter_connected_nodes(G, min_edge_weight=3):
     
     return G.subgraph(connected_nodes).copy()
 
+# === Identify clusters and highlight special nodes ===
+def identify_clusters_and_highlights(G, min_edge_weight=3):
+    """
+    Identify connected components (clusters) and find the best/worst players in each.
+    For large clusters, break them into smaller sub-groups based on edge weights.
+    """
+    # Create subgraph with only edges above threshold
+    filtered_edges = [(u, v, d) for u, v, d in G.edges(data=True) if d.get('weight', 1) >= min_edge_weight]
+    cluster_graph = nx.Graph()
+    cluster_graph.add_edges_from(filtered_edges)
+    
+    # Find connected components (clusters)
+    base_clusters = list(nx.connected_components(cluster_graph))
+    
+    highlights = {
+        'best_op': set(),      # Best opscore in each cluster
+        'worst_feed': set()    # Worst feedscore in each cluster
+    }
+    
+    for cluster in base_clusters:
+        if len(cluster) < 2:  # Skip single-node clusters
+            continue
+        
+        # If cluster is large (>15 players), break it into sub-clusters
+        if len(cluster) > 15:
+            sub_clusters = break_into_subgroups(G, cluster, min_edge_weight)
+            print(f"Large cluster ({len(cluster)} players) broken into {len(sub_clusters)} sub-groups")
+        else:
+            sub_clusters = [cluster]
+        
+        # Find highlights in each sub-cluster
+        for sub_cluster in sub_clusters:
+            if len(sub_cluster) < 2:
+                continue
+                
+            best_op_node = None
+            worst_feed_node = None
+            best_op_score = float('-inf')
+            worst_feed_score = float('-inf')
+            
+            for node in sub_cluster:
+                node_data = G.nodes[node]
+                
+                # Check opscore (higher is better)
+                try:
+                    opscore = float(node_data.get('opscore', 0)) if node_data.get('opscore') != 'N/A' else 0
+                    if opscore > best_op_score:
+                        best_op_score = opscore
+                        best_op_node = node
+                except (ValueError, TypeError):
+                    pass
+                
+                # Check feedscore (higher is worse)
+                try:
+                    feedscore = float(node_data.get('feedscore', 0)) if node_data.get('feedscore') != 'N/A' else 0
+                    if feedscore > worst_feed_score:
+                        worst_feed_score = feedscore
+                        worst_feed_node = node
+                except (ValueError, TypeError):
+                    pass
+            
+            if best_op_node:
+                highlights['best_op'].add(best_op_node)
+            if worst_feed_node:
+                highlights['worst_feed'].add(worst_feed_node)
+    
+    return highlights
+
+def break_into_subgroups(G, large_cluster, min_edge_weight):
+    """
+    Break a large cluster into smaller sub-groups based on connection strength
+    """
+    # Create subgraph of just this cluster
+    cluster_subgraph = G.subgraph(large_cluster).copy()
+    
+    # Find high-weight edges (frequent teammates)
+    high_weight_edges = []
+    for u, v, data in cluster_subgraph.edges(data=True):
+        weight = data.get('weight', 1)
+        if weight >= min_edge_weight + 2:  # Higher threshold for sub-grouping
+            high_weight_edges.append((u, v))
+    
+    # Create graph with only high-weight connections
+    subgroup_graph = nx.Graph()
+    subgroup_graph.add_nodes_from(large_cluster)
+    subgroup_graph.add_edges_from(high_weight_edges)
+    
+    # Find connected components in the high-weight graph
+    sub_clusters = list(nx.connected_components(subgroup_graph))
+    
+    # Filter out tiny sub-clusters and ensure we don't have too many
+    valid_sub_clusters = [sc for sc in sub_clusters if len(sc) >= 3]
+    
+    # If we still have very large sub-clusters, split them further
+    final_sub_clusters = []
+    for sc in valid_sub_clusters:
+        if len(sc) > 20:
+            # Split large sub-cluster randomly into smaller groups
+            sc_list = list(sc)
+            chunk_size = 12
+            for i in range(0, len(sc_list), chunk_size):
+                chunk = sc_list[i:i + chunk_size]
+                if len(chunk) >= 3:
+                    final_sub_clusters.append(set(chunk))
+        else:
+            final_sub_clusters.append(sc)
+    
+    # If no valid sub-clusters found, return the original as one group
+    if not final_sub_clusters:
+        return [large_cluster]
+    
+    return final_sub_clusters
+
 # === Visualize graph ===
 def visualize_graph(G, output_html="premade_network.html", show_standalone=True, min_edge_weight=3):
     """
@@ -113,6 +229,10 @@ def visualize_graph(G, output_html="premade_network.html", show_standalone=True,
     else:
         G_viz = G
         print(f"Full graph: {len(G_viz.nodes())} nodes")
+    
+    # Identify highlights
+    highlights = identify_clusters_and_highlights(G_viz, min_edge_weight)
+    print(f"Highlighted nodes - Best OP: {len(highlights['best_op'])}, Worst Feed: {len(highlights['worst_feed'])}")
     
     net = Network(notebook=False, height="800px", width="100%", bgcolor="#222222", font_color="white")
     
@@ -143,10 +263,33 @@ def visualize_graph(G, output_html="premade_network.html", show_standalone=True,
     }
     """)
 
-    # Add nodes
+    # Add nodes with special coloring for highlights
     for node, data in G_viz.nodes(data=True):
         label = f"{data.get('label_name', 'Unknown#Unknown')}\nFeedscore:{data.get('feedscore', 'N/A')}\nOpscore:{data.get('opscore', 'N/A')}"
-        net.add_node(node, label=label, title=label)
+        
+        # Determine node color and size based on highlights
+        if node in highlights['best_op'] and node in highlights['worst_feed']:
+            # Both best OP and worst feed in same cluster (rare but possible)
+            color = "#FF6B35"  # Orange - mixed blessing
+            size = 25
+            title = f"⚡ BEST OP & WORST FEED ⚡\n{label}"
+        elif node in highlights['best_op']:
+            # Best OP score in cluster
+            color = "#00FF7F"  # Bright green - star player
+            size = 22
+            title = f"⭐ CLUSTER STAR ⭐\n{label}"
+        elif node in highlights['worst_feed']:
+            # Worst feed score in cluster
+            color = "#FF4444"  # Bright red - feeder
+            size = 22
+            title = f"💀 CLUSTER FEEDER 💀\n{label}"
+        else:
+            # Regular node
+            color = "#666666"  # Gray
+            size = 15
+            title = label
+        
+        net.add_node(node, label=label, title=title, color=color, size=size)
 
     # Add edges
     edges_added = 0
@@ -158,6 +301,7 @@ def visualize_graph(G, output_html="premade_network.html", show_standalone=True,
     
     print(f"Added {edges_added} edges with weight >= {min_edge_weight}")
     
+    # Add custom HTML for toggle functionality
     html_template = """
     <html>
     <head>
@@ -206,6 +350,11 @@ def visualize_graph(G, output_html="premade_network.html", show_standalone=True,
             <div style="margin-top: 10px; font-size: 12px;">
                 Min Edge Weight: <input type="number" id="minWeight" value="3" min="1" max="10" onchange="updateMinWeight()">
             </div>
+            <div style="margin-top: 10px; font-size: 11px;">
+                <div><span style="color: #00FF7F;">⭐</span> Best OP Score</div>
+                <div><span style="color: #FF4444;">💀</span> Worst Feed Score</div>
+                <div><span style="color: #FF6B35;">⚡</span> Both (rare!)</div>
+            </div>
         </div>
         <div id="mynetworkid"></div>
         
@@ -244,12 +393,16 @@ def visualize_graph(G, output_html="premade_network.html", show_standalone=True,
                 },
                 nodes: {
                     borderWidth: 2,
-                    size: 15,
                     color: {
                         border: '#222222',
                         background: '#666666'
                     },
-                    font: { color: '#eeeeee', size: 12 }
+                    font: { color: '#eeeeee', size: 12 },
+                    chosen: {
+                        node: function(values, id, selected, hovering) {
+                            values.size *= 1.2;
+                        }
+                    }
                 },
                 edges: {
                     color: 'lightgray',
@@ -303,10 +456,15 @@ def visualize_graph(G, output_html="premade_network.html", show_standalone=True,
     </body>
     </html>
     """
+    
+    # Write the custom HTML with toggle functionality
     net.write_html(output_html, notebook=False)
-
+    
+    # Read the generated HTML to extract the data and options
     with open(output_html, 'r', encoding='utf-8') as f:
         html_content = f.read()
+    
+    # Extract the vis.js data from the generated HTML
     import re
     nodes_match = re.search(r'var nodes = new vis\.DataSet\((.*?)\);', html_content, re.DOTALL)
     edges_match = re.search(r'var edges = new vis\.DataSet\((.*?)\);', html_content, re.DOTALL)
@@ -316,9 +474,13 @@ def visualize_graph(G, output_html="premade_network.html", show_standalone=True,
         nodes_data = nodes_match.group(1)
         edges_data = edges_match.group(1)
         options_data = options_match.group(1)
+        
+        # Replace placeholders in template
         final_html = html_template.replace('NODES_DATA', nodes_data)
         final_html = final_html.replace('EDGES_DATA', edges_data)
         final_html = final_html.replace('OPTIONS_DATA', options_data)
+        
+        # Write the final HTML
         with open(output_html, 'w', encoding='utf-8') as f:
             f.write(final_html)
 

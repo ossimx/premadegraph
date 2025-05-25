@@ -140,7 +140,7 @@ app.post('/api/save-player', (req, res) => {
 });
 
 app.post("/api/generate-graph", (req, res) => {
-  exec(`cd "${backendDir}" && python association_graph.py -t`, (error, stdout, stderr) => {
+  exec(`cd "${backendDir}" && python fast_graph_test.py --connected-only --min-weight 2`, (error, stdout, stderr) => {
     if (error) {
       console.error("Python script error:", error);
       return res.status(500).json({ message: "Python script execution failed." });

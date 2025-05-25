@@ -21,8 +21,8 @@ REQUESTS_PER_2MIN = 90    # Use 80 out of 100 available per 2 minutes to be safe
 DELAY_BETWEEN_REQUESTS = 1.0 / REQUESTS_PER_SECOND
 
 # Fetch settings
-MATCHES_PER_PLAYER = 25  # How many matches to fetch per player
-MAX_ITERATIONS = 50 # Maximum number of players to process
+MATCHES_PER_PLAYER = 5  # How many matches to fetch per player
+MAX_ITERATIONS = 2 # Maximum number of players to process
 QUEUE_TYPE = ""
 
 class MatchCollector:
