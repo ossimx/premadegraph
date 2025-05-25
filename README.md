@@ -57,6 +57,41 @@ Example:
 ```bash
 python fast_graph_test.py --connected-only --min-weight 2
 ```
+### 🌎 Step 5(optional) - Predict the countries
 
+In this step we can predict where each cluster originates from by sending the clustered data , that we received when we generated the graph
+
+The fetch_clusters parses the puuid and last name data in a new JSON
+The assign_country program uses an OpenRouter API endpoint that tries to predict the region of the members, by their username.
+🔧 Batching
+Clusters are processed in batches (e.g. 3 at a time) to reduce API load.
+
+🧶 Prompt Construction
+A natural-language prompt is constructed for the LLM:
+
+It includes example output format
+Lists cluster names in the batch
+
+🤖 Response Handling
+The AI may return unwanted verbose explanations.
+
+To ensure clean data, we implemented a robust JSON extractor
+⚙ Database Update
+For each identified country, the program updates player records in the local SQLite DB
+
+
+### 🔐 .env Configuration
+```
+RIOT_API_KEY=riot-developer-api-key-here
+DB_PATH=path/to/your/database.db
+OPENROUTER_API_KEY=your-api-key-here
+```
+### 📝 NOTE: YOU CAN GET A TEMPORAL 24 HOUR API-KEY ON RIOT'S OFFICIAL DEVELOPER PORTAL
+https://developer.riotgames.com
+
+```bash
+python fetch_clusters.py
+python assign_countries.py
+```
 # Happy Crawling!
 
