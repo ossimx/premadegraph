@@ -64,7 +64,6 @@ def call_openrouter_api(prompt):
 
 def parse_ai_response(response_content):
     try:
-        # Find the first JSON-like block starting with {"cluster and ending with }
         match = re.search(r"\{\s*\"cluster\d+\".*?\}", response_content, re.DOTALL)
         if not match:
             print("No valid JSON block found in AI response.")

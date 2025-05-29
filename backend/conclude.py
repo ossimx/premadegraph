@@ -13,11 +13,9 @@ def analyze_country_performance(db_path):
         db_path (str): Path to the SQLite database file
     """
     
-    # Connect to the database
     conn = sqlite3.connect(db_path)
     cursor = conn.cursor()
     print('Connected . . .')
-    # Query all players data
     query = """
     SELECT puuid, names, feedscore, opscore, country, match_count 
     FROM players 
@@ -27,14 +25,10 @@ def analyze_country_performance(db_path):
     cursor.execute(query)
     rows = cursor.fetchall()
     conn.close()
-    
-    # Group players by country
     country_data = defaultdict(list)
     
     for row in rows:
         puuid, names, feedscore, opscore, country, match_count = row
-        
-        # Skip if essential data is missing
         if feedscore is None or opscore is None:
             continue
             
@@ -45,12 +39,10 @@ def analyze_country_performance(db_path):
             'opscore': opscore,
             'match_count': match_count
         })
-    
-    # Calculate averages for each country
     country_stats = {}
     
     for country, players in country_data.items():
-        if not players:  # Skip empty countries
+        if not players:
             continue
             
         feedscores = [p['feedscore'] for p in players]
@@ -72,15 +64,11 @@ def display_results(country_stats):
     print("=" * 80)
     print("COUNTRY PERFORMANCE ANALYSIS")
     print("=" * 80)
-    
-    # Sort countries by average opscore (descending)
     sorted_by_opscore = sorted(
         country_stats.items(), 
         key=lambda x: x[1]['avg_opscore'], 
         reverse=True
     )
-    
-    # Sort countries by average feedscore (ascending, since lower is better)
     sorted_by_feedscore = sorted(
         country_stats.items(), 
         key=lambda x: x[1]['avg_feedscore']
@@ -144,8 +132,6 @@ def show_country_details(country_stats, country_name):
     
     print(f"\nTop 10 Players:")
     print("-" * 60)
-    
-    # Sort players by opscore
     sorted_players = sorted(stats['players'], key=lambda x: x['opscore'], reverse=True)
     
     for i, player in enumerate(sorted_players[:10], 1):
@@ -154,7 +140,6 @@ def show_country_details(country_stats, country_name):
         print(f"{i:2}. {name_str:<25} OpScore: {player['opscore']:8.2f} FeedScore: {player['feedscore']:8.2f}")
 
 def main():
-    # Load environment variables from .env file
     load_dotenv()
     
     # Get database path from environment variable
@@ -174,8 +159,6 @@ def main():
             return
         
         display_results(country_stats)
-        
-        # Interactive mode to explore specific countries
         while True:
             print(f"\n" + "="*80)
             user_input = input("Enter a country name to see details (or 'quit' to exit): ").strip()

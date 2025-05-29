@@ -23,9 +23,9 @@ DELAY_BETWEEN_REQUESTS = 1.0 / REQUESTS_PER_SECOND
 # Fetch settings
 MATCHES_PER_PLAYER = 15  # How many matches to fetch per player
 MAX_ITERATIONS = 50 # Maximum number of players to process
-QUEUE_TYPE = "440"
+QUEUE_TYPE = ""
 
-# === NEW: SPECIFIC PUUID OPTION ===
+# === SPECIFIC PUUID OPTION ===
 # Set this to a specific PUUID to crawl only that player's matches
 # Leave as None to use random player selection
 SPECIFIC_PUUID = None
@@ -47,7 +47,6 @@ class MatchCollector:
         cursor = conn.cursor()
         
         try:
-            # Get players ordered by match count (ascending), with some randomization
             query = """
             SELECT puuid, names 
             FROM players 

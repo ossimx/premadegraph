@@ -23,7 +23,6 @@ def fetch_cluster_names_with_puuids(cluster_json_path, db_path, output_path):
                 try:
                     stored_names = json.loads(row[0])
                     if isinstance(stored_names, list) and len(stored_names) > 0:
-                        # Vegyük a legfrissebb nevet (vagy az elsőt)
                         names.append(stored_names[-1])
                     elif isinstance(stored_names, str):
                         names.append(stored_names)

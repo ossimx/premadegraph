@@ -30,7 +30,7 @@ def add_match_to_graph(G, match_data):
         # We use puuid here as the node id
         puuids = [p["puuid"] for p in match_data["info"]["participants"]]
     except KeyError:
-        return  # Skip broken matches
+        return
 
     for i, p1 in enumerate(puuids):
         for j in range(i + 1, len(puuids)):
@@ -169,7 +169,6 @@ def identify_clusters_and_highlights(G, min_edge_weight=3):
                 "worst_feed": worst_feed_node
             })
 
-    # Prepare JSON-serializable data
     result_json = {
         "clusters": cluster_data,
         "highlights": {
@@ -178,7 +177,6 @@ def identify_clusters_and_highlights(G, min_edge_weight=3):
         }
     }
 
-    # Ensure the 'clusters' directory exists
     os.makedirs('clusters', exist_ok=True)
 
     # Save to JSON
@@ -200,8 +198,6 @@ def break_into_subgroups(G, large_cluster, min_edge_weight):
         weight = data.get('weight', 1)
         if weight >= min_edge_weight + 2:  # Higher threshold for sub-grouping
             high_weight_edges.append((u, v))
-    
-    # Create graph with only high-weight connections
     subgroup_graph = nx.Graph()
     subgroup_graph.add_nodes_from(large_cluster)
     subgroup_graph.add_edges_from(high_weight_edges)
@@ -238,21 +234,16 @@ def visualize_graph(G, output_html="premade_network.html", show_standalone=True,
         show_standalone: If False, only show nodes with connections >= min_edge_weight
         min_edge_weight: Minimum edge weight to display
     """
-    # Filter graph if requested
     if not show_standalone:
         G_viz = filter_connected_nodes(G, min_edge_weight)
         print(f"Filtered graph: {len(G_viz.nodes())} connected nodes (from {len(G.nodes())} total)")
     else:
         G_viz = G
         print(f"Full graph: {len(G_viz.nodes())} nodes")
-    
-    # Identify highlights
     highlights = identify_clusters_and_highlights(G_viz, min_edge_weight)
     print(f"Highlighted nodes - Best OP: {len(highlights['best_op'])}, Worst Feed: {len(highlights['worst_feed'])}")
     
     net = Network(notebook=False, height="800px", width="100%", bgcolor="#222222", font_color="white")
-    
-    # Configure physics for large networks - orbital layout around center
     net.set_options("""
     var options = {
         "physics": {
@@ -291,29 +282,24 @@ def visualize_graph(G, output_html="premade_network.html", show_standalone=True,
                 
         # Determine node color and size based on highlights
         if node in highlights['best_op'] and node in highlights['worst_feed']:
-            # Both best OP and worst feed in same cluster (rare but possible)
-            color = "#FF6B35"  # Orange - mixed blessing
+            color = "#FF4400"  
             size = 25
-            title = f"⚡ BEST OP & WORST FEED ⚡\n{label}"
+            title = f" BEST OP & WORST FEED \n{label}"
         elif node in highlights['best_op']:
-            # Best OP score in cluster
-            color = "#00FF7F"  # Bright green - star player
+            color = "#00FF7F"  
             size = 22
-            title = f"⭐ CLUSTER STAR ⭐\n{label}"
+            title = f"CLUSTER STAR\n{label}"
         elif node in highlights['worst_feed']:
-            # Worst feed score in cluster
-            color = "#FF4444"  # Bright red - feeder
+            color = "#FF4444"
             size = 22
-            title = f"💀 CLUSTER FEEDER 💀\n{label}"
+            title = f"CLUSTER FEEDER\n{label}"
         else:
-            # Regular node
-            color = "#666666"  # Gray
+            color = "#666666"
             size = 15
             title = label
         
         net.add_node(node, label=label, title=title, color=color, size=size)
 
-    # Add edges
     edges_added = 0
     for source, target, data in G_viz.edges(data=True):
         weight = data.get("weight", 1)
@@ -323,7 +309,6 @@ def visualize_graph(G, output_html="premade_network.html", show_standalone=True,
     
     print(f"Added {edges_added} edges with weight >= {min_edge_weight}")
     
-    # Add custom HTML for toggle functionality
     html_template = """
     <html>
     <head>
@@ -479,14 +464,11 @@ def visualize_graph(G, output_html="premade_network.html", show_standalone=True,
     </html>
     """
     
-    # Write the custom HTML with toggle functionality
     net.write_html(output_html, notebook=False)
     
-    # Read the generated HTML to extract the data and options
     with open(output_html, 'r', encoding='utf-8') as f:
         html_content = f.read()
     
-    # Extract the vis.js data from the generated HTML
     import re
     nodes_match = re.search(r'var nodes = new vis\.DataSet\((.*?)\);', html_content, re.DOTALL)
     edges_match = re.search(r'var edges = new vis\.DataSet\((.*?)\);', html_content, re.DOTALL)
@@ -497,12 +479,10 @@ def visualize_graph(G, output_html="premade_network.html", show_standalone=True,
         edges_data = edges_match.group(1)
         options_data = options_match.group(1)
         
-        # Replace placeholders in template
         final_html = html_template.replace('NODES_DATA', nodes_data)
         final_html = final_html.replace('EDGES_DATA', edges_data)
         final_html = final_html.replace('OPTIONS_DATA', options_data)
         
-        # Write the final HTML
         with open(output_html, 'w', encoding='utf-8') as f:
             f.write(final_html)
 
